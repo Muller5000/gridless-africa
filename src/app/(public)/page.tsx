@@ -1,101 +1,209 @@
 import React from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { ShieldCheck, Calculator, Compass, Zap, ChevronRight } from "lucide-react";
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="from-background to-muted/20 w-full bg-linear-to-b py-20 md:py-32">
-        <div className="container mx-auto max-w-6xl px-4 text-center">
-          <div className="mx-auto max-w-3xl space-y-6">
-            <div className="border-secondary-foreground/20 bg-secondary/10 text-secondary-foreground inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold">
-              ⚡ Nigeria&apos;s Trusted Solar Marketplace
-            </div>
-            <h1 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-              Power Your Future with{" "}
-              <span className="text-secondary-foreground">Gridless Energy</span>
-            </h1>
-            <p className="text-muted-foreground mx-auto max-w-xl text-lg sm:text-xl">
-              Bridge the energy gap. Sizer your load, receive verified quotes from vetted
-              installers, and protect payments with secure escrow.
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Link href="/calculator" className={buttonVariants({ size: "lg" })}>
-                Calculate Your Savings
-              </Link>
-              <Link
-                href="/installers"
-                className={buttonVariants({ variant: "outline", size: "lg" })}
-              >
-                Browse Verified Installers
-              </Link>
-            </div>
+      <section className="from-background to-muted/20 relative w-full overflow-hidden bg-linear-to-b py-20 md:py-32">
+        <div className="relative z-10 container mx-auto max-w-6xl space-y-8 px-4 text-center">
+          <div className="border-secondary-foreground/20 bg-secondary/10 text-secondary-foreground animate-fade-in inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
+            <Zap className="size-3.5 fill-current" /> Nigeria&apos;s Trusted Solar Infrastructure
+            Marketplace
+          </div>
+
+          <h1 className="text-foreground mx-auto max-w-4xl text-4xl leading-tight font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+            Transition to Reliable Solar Power with{" "}
+            <span className="text-secondary-foreground">Absolute Trust</span>
+          </h1>
+
+          <p className="text-muted-foreground mx-auto max-w-2xl text-base leading-relaxed sm:text-lg md:text-xl">
+            Bridge the grid reliability gap. Size your custom appliance load, compare competitive
+            bids from vetted installers, and secure your payment in escrow.
+          </p>
+
+          <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-center">
+            <Link
+              href="/calculator"
+              className={buttonVariants({
+                size: "lg",
+                className: "cursor-pointer gap-2 px-8 font-bold shadow-sm",
+              })}
+            >
+              <Calculator className="size-5" /> Calculate Your Savings
+            </Link>
+            <Link
+              href="/installers"
+              className={buttonVariants({
+                variant: "outline",
+                size: "lg",
+                className: "cursor-pointer px-8 font-semibold",
+              })}
+            >
+              Browse Verified Installers
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Feature Section */}
-      <section className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
-        <div className="mb-16 space-y-4 text-center">
-          <h2 className="text-foreground text-3xl font-bold tracking-tight sm:text-4xl">
+      {/* Escrow Trust Shield Banner */}
+      <section className="border-border bg-card w-full border-y py-6">
+        <div className="container mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 md:flex-row">
+          <div className="flex items-center space-x-3 text-left">
+            <div className="flex size-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
+              <ShieldCheck className="size-7" />
+            </div>
+            <div>
+              <h3 className="text-foreground text-sm font-bold">Escrow Protected Payments</h3>
+              <p className="text-muted-foreground text-xs">
+                Funds are held securely and released to installers only upon milestone sign-off.
+              </p>
+            </div>
+          </div>
+          <div className="text-muted-foreground flex items-center space-x-6 text-xs font-semibold">
+            <span>✓ Paystack Secure Checkout</span>
+            <span>✓ CAC Vetted Installers</span>
+            <span>✓ Nigeria-Wide Escrow Safety</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Market Bottlenecks & Solutions Grid */}
+      <section className="container mx-auto max-w-6xl space-y-16 px-4 py-16 md:py-24">
+        <div className="space-y-4 text-center">
+          <h2 className="text-foreground text-3xl font-extrabold tracking-tight sm:text-4xl">
             Tackling the Bottlenecks of Nigerian Solar
           </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl">
-            We solve the industry&apos;s greatest challenges: trust, hardware standardization, and
-            upfront capital.
+          <p className="text-muted-foreground mx-auto max-w-2xl text-sm md:text-base">
+            We eliminate risk, guarantee equipment standards, and match you with regional experts.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          <div className="border-border bg-card rounded-xl border p-6 shadow-sm">
-            <div className="bg-primary text-primary-foreground mb-4 flex h-10 w-10 items-center justify-center rounded-lg font-bold">
-              1
+          <div className="border-border bg-card rounded-xl border p-6 shadow-xs transition-shadow hover:shadow-md">
+            <div className="bg-primary text-primary-foreground mb-4 flex size-10 items-center justify-center rounded-lg">
+              <Calculator className="size-5" />
             </div>
-            <h3 className="text-foreground mb-2 text-lg font-semibold">Solar Savings Calculator</h3>
-            <p className="text-muted-foreground text-sm">
-              Our AI-assisted tool calculates your energy needs, estimates ROI, and matches you with
-              verified solar hardware.
+            <h3 className="text-foreground mb-2 text-lg font-bold">1. Solar Savings Calculator</h3>
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              Input your appliances, current monthly fuel spend, and location. Our sizer outputs
+              recommended inverter, battery, and panel counts instantly.
             </p>
           </div>
 
-          <div className="border-border bg-card rounded-xl border p-6 shadow-sm">
-            <div className="bg-secondary text-secondary-foreground mb-4 flex h-10 w-10 items-center justify-center rounded-lg font-bold">
-              2
+          <div className="border-border bg-card rounded-xl border p-6 shadow-xs transition-shadow hover:shadow-md">
+            <div className="bg-secondary text-secondary-foreground mb-4 flex size-10 items-center justify-center rounded-lg">
+              <Compass className="size-5" />
             </div>
-            <h3 className="text-foreground mb-2 text-lg font-semibold">Verified Bidding</h3>
-            <p className="text-muted-foreground text-sm">
-              Receive up to 3 competitive, standardized quotes from vetted, geofenced tier-1 and
-              tier-2 solar engineering firms.
+            <h3 className="text-foreground mb-2 text-lg font-bold">2. Geofenced Bidding</h3>
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              Your generated lead is broadcasted to vetted regional installers in Oyo and Lagos.
+              Receive up to 3 competitive, standardized quotes within 48 hours.
             </p>
           </div>
 
-          <div className="border-border bg-card rounded-xl border p-6 shadow-sm">
-            <div className="bg-primary text-primary-foreground mb-4 flex h-10 w-10 items-center justify-center rounded-lg font-bold">
-              3
+          <div className="border-border bg-card rounded-xl border p-6 shadow-xs transition-shadow hover:shadow-md">
+            <div className="bg-primary text-primary-foreground mb-4 flex size-10 items-center justify-center rounded-lg">
+              <ShieldCheck className="size-5" />
             </div>
-            <h3 className="text-foreground mb-2 text-lg font-semibold">Secure Escrow Payments</h3>
-            <p className="text-muted-foreground text-sm">
-              Pay securely via Paystack integration. Funds are held in escrow and released only when
-              installation milestones are completed and verified.
+            <h3 className="text-foreground mb-2 text-lg font-bold">3. Milestone Escrow Release</h3>
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              Verify each phase of the installation. Once you sign off, Paystack releases that
+              milestone&apos;s funds to the installer. Maximum project safety.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="bg-primary text-primary-foreground w-full py-16 text-center md:py-20">
-        <div className="container mx-auto max-w-4xl space-y-6 px-4">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Ready to transition to reliable power?
+      {/* Target Audiences: Residential & Commercial */}
+      <section className="bg-muted/30 border-border w-full border-t py-16 md:py-24">
+        <div className="container mx-auto max-w-6xl space-y-12 px-4">
+          <div className="space-y-4 text-center">
+            <h2 className="text-foreground text-3xl font-extrabold tracking-tight sm:text-4xl">
+              Solar Solutions For Every Scale
+            </h2>
+            <p className="text-muted-foreground mx-auto max-w-2xl text-sm md:text-base">
+              Designed for residential peace of mind and commercial economic growth.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <div className="border-border bg-card flex flex-col justify-between space-y-6 rounded-xl border p-8">
+              <div className="space-y-4">
+                <div className="bg-primary/10 text-primary inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold">
+                  Residential
+                </div>
+                <h3 className="text-foreground text-2xl font-bold">Power Your Household</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Run lightings, TVs, freezers, and critical pumps without noisy generators. Cut
+                  fuel bills and secure immediate energy independence.
+                </p>
+              </div>
+              <Link
+                href="/calculator"
+                className="text-primary flex items-center gap-1 text-sm font-bold hover:underline"
+              >
+                Size Home System <ChevronRight className="size-4" />
+              </Link>
+            </div>
+
+            <div className="border-border bg-card flex flex-col justify-between space-y-6 rounded-xl border p-8">
+              <div className="space-y-4">
+                <div className="bg-secondary/10 text-secondary-foreground inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold">
+                  Commercial
+                </div>
+                <h3 className="text-foreground text-2xl font-bold">Infrastructure for SMEs</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Eliminate business downtime. Shield inventory and operations from grid failures,
+                  protect operating margins, and highlight clean energy adoption.
+                </p>
+              </div>
+              <Link
+                href="/calculator"
+                className="text-primary flex items-center gap-1 text-sm font-bold hover:underline"
+              >
+                Estimate SME ROI <ChevronRight className="size-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Footer Section */}
+      <section className="bg-primary text-primary-foreground relative w-full overflow-hidden py-20 text-center">
+        <div className="relative z-10 container mx-auto max-w-4xl space-y-6 px-4">
+          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
+            Empower Your Business or Home Today
           </h2>
-          <p className="text-primary-foreground/80 mx-auto max-w-xl text-lg">
-            Use our intelligent sizer to estimate required panel count, inverter kVa, battery
-            capacity, and payback period.
+          <p className="text-primary-foreground/80 mx-auto max-w-xl text-sm leading-relaxed md:text-base">
+            Transition to solar with verified engineering firms, transparent hardware
+            specifications, and secure escrow accounts.
           </p>
-          <Link href="/calculator" className={buttonVariants({ variant: "secondary", size: "lg" })}>
-            Launch Solar Calculator
-          </Link>
+          <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-center">
+            <Link
+              href="/calculator"
+              className={buttonVariants({
+                variant: "secondary",
+                size: "lg",
+                className: "cursor-pointer gap-2 px-8 font-bold",
+              })}
+            >
+              <Calculator className="size-5" /> Calculate Savings Now
+            </Link>
+            <Link
+              href="/login"
+              className={buttonVariants({
+                variant: "outline",
+                size: "lg",
+                className:
+                  "text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary cursor-pointer px-8",
+              })}
+            >
+              Sign Up to Portal
+            </Link>
+          </div>
         </div>
       </section>
     </div>

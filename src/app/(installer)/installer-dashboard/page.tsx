@@ -1,57 +1,73 @@
 import React from "react";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import LeadsList from "@/features/quotes/leads-list";
+import { Card } from "@/components/ui/card";
+import { AlertTriangle } from "lucide-react";
 
 export default function InstallerDashboardPage() {
   return (
-    <div className="max-w-4xl space-y-6">
+    <div className="max-w-5xl space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Installer Dashboard</h1>
-        <Link href="/installer/profile" className={buttonVariants()}>
-          Complete KYC Setup
-        </Link>
-      </div>
-
-      {/* Warning Alert */}
-      <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-4 text-sm text-amber-500">
-        <span className="font-bold">KYC Action Required:</span> Please upload your CAC business
-        registration documents and certifications to activate lead bidding.
-      </div>
-
-      {/* Stats Summary Grid */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
-        <div className="border-border bg-card rounded-xl border p-6 shadow-xs">
-          <span className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
-            Geofenced Leads
-          </span>
-          <p className="text-foreground mt-1 text-2xl font-bold">0</p>
+        <div>
+          <h1 className="text-foreground text-3xl font-extrabold tracking-tight">
+            Installer Control Center
+          </h1>
+          <p className="text-muted-foreground mt-1 text-sm">
+            Browse regional customer leads, manage active bids, and monitor escrow payouts.
+          </p>
         </div>
-        <div className="border-border bg-card rounded-xl border p-6 shadow-xs">
-          <span className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+      </div>
+
+      {/* KYC Alert Message */}
+      <div className="flex items-start space-x-3 rounded-xl border border-amber-500/20 bg-amber-500/5 p-5">
+        <AlertTriangle className="mt-0.5 size-5 shrink-0 text-amber-500" />
+        <div className="space-y-1">
+          <h4 className="text-foreground text-sm font-bold">
+            Action Required: Business Vetting Pending
+          </h4>
+          <p className="text-muted-foreground text-xs leading-relaxed">
+            Please upload your Corporate Affairs Commission (CAC) registration files and engineering
+            certificates under Profile & KYC. You cannot submit active bids until credentials are
+            approved by platform administrators.
+          </p>
+        </div>
+      </div>
+
+      {/* Key Metrics Grid */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <Card className="border-border bg-card space-y-2 border p-6 shadow-xs">
+          <span className="text-muted-foreground text-[10px] font-bold tracking-wider uppercase">
             My Active Bids
           </span>
-          <p className="text-foreground mt-1 text-2xl font-bold">0</p>
-        </div>
-        <div className="border-border bg-card rounded-xl border p-6 shadow-xs">
-          <span className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
-            Completed Jobs
+          <div className="flex items-baseline space-x-2">
+            <span className="text-foreground text-3xl font-black">0</span>
+            <span className="text-muted-foreground text-xs">Submitted</span>
+          </div>
+        </Card>
+
+        <Card className="border-border bg-card space-y-2 border p-6 shadow-xs">
+          <span className="text-muted-foreground text-[10px] font-bold tracking-wider uppercase">
+            Active Projects
           </span>
-          <p className="text-foreground mt-1 text-2xl font-bold">0</p>
-        </div>
-        <div className="border-border bg-card rounded-xl border p-6 shadow-xs">
-          <span className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+          <div className="flex items-baseline space-x-2">
+            <span className="text-foreground text-3xl font-black">0</span>
+            <span className="text-muted-foreground text-xs">In progress</span>
+          </div>
+        </Card>
+
+        <Card className="border-border bg-card space-y-2 border p-6 shadow-xs">
+          <span className="text-muted-foreground text-[10px] font-bold tracking-wider uppercase">
             Escrow Payouts
           </span>
-          <p className="text-foreground mt-1 text-2xl font-bold">₦0.00</p>
-        </div>
+          <div className="flex items-baseline space-x-2">
+            <span className="text-primary text-3xl font-black">₦0.00</span>
+            <span className="text-muted-foreground text-xs">Cleared</span>
+          </div>
+        </Card>
       </div>
 
-      {/* Main Body Grid */}
-      <div className="border-border bg-card text-muted-foreground space-y-4 rounded-xl border p-8 text-center text-sm">
-        <p>No customer leads are currently active in Oyo or Lagos matching your profile.</p>
-        <Link href="/installer/leads" className={buttonVariants({ variant: "outline" })}>
-          Browse Leads Directory
-        </Link>
+      {/* Leads List component section */}
+      <div className="pt-4">
+        <LeadsList />
       </div>
     </div>
   );
