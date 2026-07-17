@@ -14,19 +14,21 @@ export default async function CustomerLayout({ children }: { children: React.Rea
   }
 
   return (
-    <div className="bg-muted/20 flex min-h-screen pb-16 md:pb-0">
+    <div className="bg-muted/20 print:bg-background flex min-h-screen pb-16 md:pb-0 print:pb-0">
       <Sidebar role="customer" />
 
       <div className="flex flex-1 flex-col">
         {/* Top Header */}
-        <header className="border-border bg-card flex h-16 items-center justify-between border-b px-6">
+        <header className="border-border bg-card flex h-16 items-center justify-between border-b px-6 print:hidden">
           <span className="text-muted-foreground text-sm font-semibold">
             Welcome, {user.user_metadata?.full_name || user.email}
           </span>
         </header>
 
         {/* Content View */}
-        <main className="animate-in fade-in flex-1 p-6 duration-200 md:p-8">{children}</main>
+        <main className="animate-in fade-in flex-1 p-6 duration-200 md:p-8 print:p-0">
+          {children}
+        </main>
       </div>
 
       <MobileTabBar role="customer" />

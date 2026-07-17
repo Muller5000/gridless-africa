@@ -155,7 +155,7 @@ export function Sidebar({ role }: { role: "customer" | "installer" | "admin" }) 
   const items = navItems[role] || [];
 
   return (
-    <aside className="border-border bg-card hidden w-64 flex-col border-r md:flex">
+    <aside className="border-border bg-card hidden w-64 flex-col border-r md:flex print:hidden">
       <div className="border-border flex h-16 items-center border-b px-6">
         <Link href="/" className="flex items-center space-x-2">
           <span className="text-primary text-xl font-bold tracking-tight">
@@ -226,7 +226,7 @@ export function MobileTabBar({ role }: { role: "customer" | "installer" | "admin
   const items = tabItems[role] || [];
 
   return (
-    <nav className="border-border bg-card pb-safe fixed bottom-0 left-0 z-50 flex h-16 w-full items-center justify-around border-t px-2 shadow-lg md:hidden">
+    <nav className="border-border bg-card pb-safe fixed bottom-0 left-0 z-50 flex h-16 w-full items-center justify-around border-t px-2 shadow-lg md:hidden print:hidden">
       {items.map((item) => {
         const Icon = item.icon;
         const isActive = pathname === item.href;
