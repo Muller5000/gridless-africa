@@ -55,6 +55,7 @@ export default function OnboardingWizard() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   const supabase = createClient();
@@ -113,6 +114,7 @@ export default function OnboardingWizard() {
           return;
         }
         setUserId(user.id);
+        setUserEmail(user.email || null);
 
         // Fetch profile
         const { data: profile } = await supabase
@@ -185,9 +187,10 @@ export default function OnboardingWizard() {
     if (!userId) return;
     setSaving(true);
     try {
-      const { error } = await supabase
-        .from("profiles")
-        .update({
+      const { error } = await supabase.from("profiles").upsert(
+        {
+          id: userId,
+          email: userEmail || "",
           full_name: values.fullName,
           phone_number: values.phoneNumber,
           state: values.state,
@@ -195,8 +198,9 @@ export default function OnboardingWizard() {
           residential_address: values.residentialAddress,
           customer_type: values.customerType,
           onboarding_step: 2,
-        })
-        .eq("id", userId);
+        },
+        { onConflict: "id" },
+      );
 
       if (error) throw error;
       setStep(2);
