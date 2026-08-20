@@ -25,7 +25,7 @@ export default function LandingPage() {
 
           <h1 className="mx-auto max-w-4xl text-4xl leading-tight font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
             Transition to Reliable Solar Power with{" "}
-            <span className="text-primary font-black">Absolute Trust</span>
+            <span className="text-secondary font-black">Absolute Trust</span>
           </h1>
 
           <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg md:text-xl">
@@ -37,6 +37,7 @@ export default function LandingPage() {
             <Link
               href="/calculator"
               className={buttonVariants({
+                variant: "secondary",
                 size: "lg",
                 className: "cursor-pointer gap-2 px-8 font-bold shadow-sm",
               })}
@@ -46,10 +47,10 @@ export default function LandingPage() {
             <Link
               href="/installers"
               className={buttonVariants({
-                variant: "outline",
+                variant: "ghost",
                 size: "lg",
                 className:
-                  "cursor-pointer border-white px-8 font-semibold text-white hover:bg-white/10 hover:text-white",
+                  "cursor-pointer border border-white px-8 font-semibold text-white hover:bg-white/10 hover:text-white",
               })}
             >
               Browse Verified Installers
