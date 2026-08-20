@@ -7,19 +7,28 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="from-background to-muted/20 relative w-full overflow-hidden bg-linear-to-b py-20 md:py-32">
+      <section className="relative w-full overflow-hidden py-20 md:py-32">
+        {/* Background Video */}
+        <video autoPlay loop muted playsInline className="absolute inset-0 size-full object-cover">
+          <source src="/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-slate-950/70" />
+
         <div className="relative z-10 container mx-auto max-w-6xl space-y-8 px-4 text-center">
-          <div className="border-secondary-foreground/20 bg-secondary/10 text-secondary-foreground animate-fade-in inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
-            <Zap className="size-3.5 fill-current" /> Nigeria&apos;s Trusted Solar Infrastructure
-            Marketplace
+          <div className="animate-fade-in inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white">
+            <Zap className="size-3.5 fill-current text-amber-400" /> Nigeria&apos;s Trusted Solar
+            Infrastructure Marketplace
           </div>
 
-          <h1 className="text-foreground mx-auto max-w-4xl text-4xl leading-tight font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+          <h1 className="mx-auto max-w-4xl text-4xl leading-tight font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
             Transition to Reliable Solar Power with{" "}
-            <span className="text-secondary-foreground">Absolute Trust</span>
+            <span className="text-primary font-black">Absolute Trust</span>
           </h1>
 
-          <p className="text-muted-foreground mx-auto max-w-2xl text-base leading-relaxed sm:text-lg md:text-xl">
+          <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg md:text-xl">
             Bridge the grid reliability gap. Size your custom appliance load, compare competitive
             bids from vetted installers, and secure your payment in escrow.
           </p>
@@ -39,7 +48,8 @@ export default function LandingPage() {
               className={buttonVariants({
                 variant: "outline",
                 size: "lg",
-                className: "cursor-pointer px-8 font-semibold",
+                className:
+                  "cursor-pointer border-white px-8 font-semibold text-white hover:bg-white/10 hover:text-white",
               })}
             >
               Browse Verified Installers
