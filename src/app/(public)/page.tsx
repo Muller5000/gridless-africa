@@ -100,7 +100,10 @@ export default function LandingPage() {
       </section>
 
       {/* Installer Showcase Deck */}
-      <section className="border-border w-full border-b py-16 md:py-24">
+      <section className="border-border relative w-full overflow-hidden border-b py-16 md:py-24">
+        {/* Decorative background for glass morphism */}
+        <div className="from-primary/10 via-secondary/10 to-primary/10 absolute top-1/2 left-1/2 -z-10 h-full w-[150%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r blur-[100px]" />
+
         <div className="container mx-auto max-w-6xl space-y-10 px-4">
           <div className="space-y-3 text-center">
             <h2 className="text-foreground text-3xl font-extrabold tracking-tight sm:text-4xl">

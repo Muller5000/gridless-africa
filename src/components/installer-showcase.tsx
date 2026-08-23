@@ -11,7 +11,7 @@ export function InstallerShowcase() {
     <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
       {/* Installer Card 1 */}
       <FlipCard
-        className="h-full w-full"
+        className="h-[350px] w-full"
         front={
           <div className="bg-card border-border group relative flex flex-col gap-4 overflow-hidden rounded-xl border p-6 shadow-sm transition-all hover:shadow-md">
             <div className="absolute top-0 right-0 p-3">
@@ -56,7 +56,7 @@ export function InstallerShowcase() {
       />
       {/* Installer Card 2 */}
       <FlipCard
-        className="h-full w-full"
+        className="h-[350px] w-full"
         front={
           <div className="bg-card border-border group relative flex flex-col gap-4 overflow-hidden rounded-xl border p-6 shadow-sm transition-all hover:shadow-md">
             <div className="absolute top-0 right-0 p-3">
@@ -101,7 +101,7 @@ export function InstallerShowcase() {
       />
       {/* Installer Card 3 */}
       <FlipCard
-        className="h-full w-full"
+        className="h-[350px] w-full"
         front={
           <div className="bg-card border-border group relative flex flex-col gap-4 overflow-hidden rounded-xl border p-6 shadow-sm transition-all hover:shadow-md">
             <div className="absolute top-0 right-3 p-3">
