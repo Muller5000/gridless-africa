@@ -229,77 +229,205 @@ export default async function CustomerDashboardPage() {
 
       {/* Sizing Recommendations details dashboard card */}
       {hasAssessment ? (
-        <Card className="border-border bg-card space-y-6 border p-6 shadow-xs">
-          <div className="border-border flex items-center justify-between border-b pb-3">
-            <h3 className="text-foreground text-sm font-bold tracking-wider uppercase">
-              My Verified Energy Specification
-            </h3>
-            <span className="bg-primary/10 text-primary rounded-md px-2.5 py-0.5 text-[10px] font-semibold capitalize">
-              {assessment.category} System
-            </span>
-          </div>
+        <>
+          <Card className="border-border bg-card space-y-6 border p-6 shadow-xs">
+            <div className="border-border flex items-center justify-between border-b pb-3">
+              <h3 className="text-foreground text-sm font-bold tracking-wider uppercase">
+                My Verified Energy Specification
+              </h3>
+              <span className="bg-primary/10 text-primary rounded-md px-2.5 py-0.5 text-[10px] font-semibold capitalize">
+                {assessment.category} System
+              </span>
+            </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="border-border bg-muted/20 flex items-center space-x-3 rounded-xl border p-4">
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-500">
-                <Flame className="size-5" />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="border-border bg-muted/20 flex items-center space-x-3 rounded-xl border p-4">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-500">
+                  <Flame className="size-5" />
+                </div>
+                <div className="space-y-0.5">
+                  <span className="text-muted-foreground text-[9px] font-semibold tracking-wider uppercase">
+                    Inverter size
+                  </span>
+                  <p className="text-foreground text-sm font-extrabold">
+                    {assessment.recommended_inverter_kva} kVa
+                  </p>
+                </div>
               </div>
-              <div className="space-y-0.5">
-                <span className="text-muted-foreground text-[9px] font-semibold tracking-wider uppercase">
-                  Inverter size
-                </span>
-                <p className="text-foreground text-sm font-extrabold">
-                  {assessment.recommended_inverter_kva} kVa
-                </p>
+
+              <div className="border-border bg-muted/20 flex items-center space-x-3 rounded-xl border p-4">
+                <div className="bg-primary/10 text-primary flex size-9 shrink-0 items-center justify-center rounded-lg">
+                  <Battery className="size-5" />
+                </div>
+                <div className="space-y-0.5">
+                  <span className="text-muted-foreground text-[9px] font-semibold tracking-wider uppercase">
+                    Battery Storage
+                  </span>
+                  <p className="text-foreground text-sm font-extrabold">
+                    {assessment.recommended_battery_kwh} kWh
+                  </p>
+                </div>
+              </div>
+
+              <div className="border-border bg-muted/20 flex items-center space-x-3 rounded-xl border p-4">
+                <div className="bg-secondary/15 text-secondary-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
+                  <Sun className="size-5" />
+                </div>
+                <div className="space-y-0.5">
+                  <span className="text-muted-foreground text-[9px] font-semibold tracking-wider uppercase">
+                    Solar capacity
+                  </span>
+                  <p className="text-foreground text-sm font-extrabold">
+                    {assessment.recommended_solar_w > 0
+                      ? `${assessment.recommended_solar_w} W`
+                      : "0 W"}
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="border-border bg-muted/20 flex items-center space-x-3 rounded-xl border p-4">
-              <div className="bg-primary/10 text-primary flex size-9 shrink-0 items-center justify-center rounded-lg">
-                <Battery className="size-5" />
-              </div>
-              <div className="space-y-0.5">
-                <span className="text-muted-foreground text-[9px] font-semibold tracking-wider uppercase">
-                  Battery Storage
-                </span>
-                <p className="text-foreground text-sm font-extrabold">
-                  {assessment.recommended_battery_kwh} kWh
-                </p>
-              </div>
+            <div className="flex justify-end gap-3 pt-2">
+              <Link
+                href="/assessment"
+                className={cn(buttonVariants({ variant: "outline", size: "sm" }), "cursor-pointer")}
+              >
+                Edit Audit
+              </Link>
+              <Link
+                href="/assessment/report"
+                className={cn(buttonVariants({ size: "sm" }), "cursor-pointer gap-1.5")}
+              >
+                <Printer className="size-4" /> View Report
+              </Link>
+            </div>
+          </Card>
+
+          {/* MOCK: Standardized Side-by-Side Bids Comparison */}
+          <div className="space-y-4 pt-6">
+            <div className="flex items-center justify-between">
+              <h3 className="text-foreground text-xl font-extrabold tracking-tight">Active Bids</h3>
+              <span className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs font-semibold">
+                2 Quotes Received
+              </span>
             </div>
 
-            <div className="border-border bg-muted/20 flex items-center space-x-3 rounded-xl border p-4">
-              <div className="bg-secondary/15 text-secondary-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
-                <Sun className="size-5" />
-              </div>
-              <div className="space-y-0.5">
-                <span className="text-muted-foreground text-[9px] font-semibold tracking-wider uppercase">
-                  Solar capacity
-                </span>
-                <p className="text-foreground text-sm font-extrabold">
-                  {assessment.recommended_solar_w > 0
-                    ? `${assessment.recommended_solar_w} W`
-                    : "0 W"}
-                </p>
-              </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {/* Bid Card 1 */}
+              <Card className="border-border bg-card relative flex flex-col justify-between overflow-hidden border shadow-sm transition-shadow hover:shadow-md">
+                <div className="absolute top-0 right-0 p-3">
+                  <div className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold tracking-wider text-emerald-600 uppercase">
+                    <ShieldCheck className="size-3" /> CAC Vetted
+                  </div>
+                </div>
+                <div className="border-border space-y-1 border-b p-6 pb-4">
+                  <h4 className="text-foreground text-lg font-bold">SunTech Energy Ltd</h4>
+                  <p className="text-muted-foreground text-xs">Estimated commission: 3-5 days</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 p-6 text-sm">
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                      Inverter
+                    </span>
+                    <span className="text-foreground font-semibold">5kVa Felicity Hybrid</span>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                      Battery
+                    </span>
+                    <span className="text-foreground font-semibold">10kWh Lithium LFP</span>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                      Solar Panels
+                    </span>
+                    <span className="text-foreground font-semibold">12 × 450W Monocrystalline</span>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                      Warranty
+                    </span>
+                    <span className="text-foreground font-semibold">24 Months</span>
+                  </div>
+                </div>
+
+                <div className="bg-muted/30 mt-auto flex items-center justify-between p-6">
+                  <div>
+                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                      Total Quote
+                    </span>
+                    <span className="text-foreground text-xl font-black">₦ 4,850,000</span>
+                  </div>
+                  <button
+                    className={cn(buttonVariants({ size: "sm" }), "cursor-pointer font-bold")}
+                  >
+                    Accept & Pay Escrow
+                  </button>
+                </div>
+              </Card>
+
+              {/* Bid Card 2 */}
+              <Card className="border-border bg-card border-primary/20 ring-primary/20 relative flex flex-col justify-between overflow-hidden border shadow-md ring-1">
+                <div className="absolute top-0 right-0 p-3">
+                  <div className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold tracking-wider text-emerald-600 uppercase">
+                    <ShieldCheck className="size-3" /> CAC Vetted
+                  </div>
+                </div>
+                <div className="bg-primary text-primary-foreground absolute top-0 left-0 rounded-br-lg px-3 py-1 text-[10px] font-bold tracking-wider uppercase">
+                  Best Value
+                </div>
+                <div className="border-border space-y-1 border-b p-6 pt-8 pb-4">
+                  <h4 className="text-foreground text-lg font-bold">Lumina Solar NG</h4>
+                  <p className="text-muted-foreground text-xs">Estimated commission: 2-3 days</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 p-6 text-sm">
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                      Inverter
+                    </span>
+                    <span className="text-foreground font-semibold">5.5kVa DEYE Smart</span>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                      Battery
+                    </span>
+                    <span className="text-foreground font-semibold">10kWh Lithium LFP</span>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                      Solar Panels
+                    </span>
+                    <span className="text-foreground font-semibold">10 × 550W Tier-1</span>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                      Warranty
+                    </span>
+                    <span className="text-primary font-semibold">36 Months</span>
+                  </div>
+                </div>
+
+                <div className="bg-primary/5 mt-auto flex items-center justify-between p-6">
+                  <div>
+                    <span className="text-primary/80 block text-[10px] font-bold tracking-wider uppercase">
+                      Total Quote
+                    </span>
+                    <span className="text-primary text-xl font-black">₦ 4,600,000</span>
+                  </div>
+                  <button
+                    className={cn(
+                      buttonVariants({ size: "sm" }),
+                      "cursor-pointer font-bold shadow-md hover:shadow-lg",
+                    )}
+                  >
+                    Accept & Pay Escrow
+                  </button>
+                </div>
+              </Card>
             </div>
           </div>
-
-          <div className="flex justify-end gap-3 pt-2">
-            <Link
-              href="/assessment"
-              className={cn(buttonVariants({ variant: "outline", size: "sm" }), "cursor-pointer")}
-            >
-              Edit Audit
-            </Link>
-            <Link
-              href="/assessment/report"
-              className={cn(buttonVariants({ size: "sm" }), "cursor-pointer gap-1.5")}
-            >
-              <Printer className="size-4" /> View Report
-            </Link>
-          </div>
-        </Card>
+        </>
       ) : onboardingCompleted ? (
         <Card className="border-border bg-card flex flex-col items-center justify-center space-y-6 border p-12 text-center shadow-xs">
           <div className="bg-primary/5 text-primary flex size-14 items-center justify-center rounded-full">

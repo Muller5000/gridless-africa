@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { ShieldCheck, Calculator, Compass, Zap, ChevronRight } from "lucide-react";
+import { InstallerShowcase } from "@/components/installer-showcase";
+import { GeneratorRoiCalculator } from "@/features/calculator/generator-roi-calculator";
 
 export default function LandingPage() {
   return (
@@ -78,6 +80,39 @@ export default function LandingPage() {
             <span>✓ CAC Vetted Installers</span>
             <span>✓ Nigeria-Wide Escrow Safety</span>
           </div>
+        </div>
+      </section>
+
+      {/* Generator ROI Calculator Section */}
+      <section className="border-border w-full border-b bg-slate-50 py-16 md:py-24 dark:bg-slate-900">
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="mb-10 space-y-3 text-center">
+            <h2 className="text-foreground text-3xl font-extrabold tracking-tight sm:text-4xl">
+              Stop Burning Cash on Generator Fuel
+            </h2>
+            <p className="text-muted-foreground mx-auto max-w-2xl text-sm md:text-base">
+              Use our interactive calculator to see exactly how fast a solar system pays for itself
+              in Nigeria.
+            </p>
+          </div>
+          <GeneratorRoiCalculator />
+        </div>
+      </section>
+
+      {/* Installer Showcase Deck */}
+      <section className="border-border w-full border-b py-16 md:py-24">
+        <div className="container mx-auto max-w-6xl space-y-10 px-4">
+          <div className="space-y-3 text-center">
+            <h2 className="text-foreground text-3xl font-extrabold tracking-tight sm:text-4xl">
+              Matched with Verified Regional Experts
+            </h2>
+            <p className="text-muted-foreground mx-auto max-w-2xl text-sm md:text-base">
+              We connect you exclusively with CAC-registered installers who have proven track
+              records in your State.
+            </p>
+          </div>
+
+          <InstallerShowcase />
         </div>
       </section>
 
