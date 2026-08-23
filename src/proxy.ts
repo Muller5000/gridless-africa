@@ -27,9 +27,13 @@ export async function proxy(request: NextRequest) {
     },
   });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let user = null;
+  try {
+    const { data } = await supabase.auth.getUser();
+    user = data.user;
+  } catch (error) {
+    console.error("Auth check failed in proxy:", error);
+  }
 
   const url = request.nextUrl.clone();
   const { pathname } = url;
