@@ -47,7 +47,7 @@ export function FlipCard({ front, back, className }: FlipCardProps) {
         {/* Front side */}
         <div
           className={cn(
-            "absolute inset-0 rounded-xl border border-black/10 bg-white/40 shadow-xl backdrop-blur-md dark:border-white/20 dark:bg-white/10",
+            "absolute inset-0 rounded-3xl border border-black/10 bg-white/40 shadow-xl backdrop-blur-md dark:border-white/20 dark:bg-white/10",
             "flex flex-col overflow-hidden",
             "backface-hidden",
           )}
@@ -57,7 +57,7 @@ export function FlipCard({ front, back, className }: FlipCardProps) {
         {/* Back side */}
         <div
           className={cn(
-            "absolute inset-0 rounded-xl border border-black/10 bg-white/40 shadow-xl backdrop-blur-md dark:border-white/20 dark:bg-white/10",
+            "absolute inset-0 rounded-3xl border border-black/10 bg-white/40 shadow-xl backdrop-blur-md dark:border-white/20 dark:bg-white/10",
             "flex flex-col overflow-hidden",
             "rotate-y-180 backface-hidden",
           )}
