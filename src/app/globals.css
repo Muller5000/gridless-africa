@@ -49,38 +49,38 @@
 }
 
 :root {
-  --background: oklch(0.985 0.005 240); /* Off-White Pearl */
-  --foreground: oklch(0.15 0.02 240);
+  --background: oklch(0.985 0.005 90); /* Warm off-white */
+  --foreground: oklch(0.25 0.03 150); /* Deep forest green */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.02 240);
+  --card-foreground: oklch(0.25 0.03 150);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.02 240);
-  --primary: oklch(0.25 0.06 245); /* Deep Navy */
-  --primary-foreground: oklch(0.985 0.005 240);
-  --secondary: oklch(0.8 0.14 75); /* Sun Gold */
-  --secondary-foreground: oklch(0.25 0.06 245);
-  --muted: oklch(0.95 0.01 240);
-  --muted-foreground: oklch(0.55 0.02 240);
-  --accent: oklch(0.95 0.01 240);
-  --accent-foreground: oklch(0.25 0.06 245);
-  --destructive: oklch(0.58 0.18 28); /* Crimson Red */
-  --border: oklch(0.9 0.01 240);
-  --input: oklch(0.9 0.01 240);
-  --ring: oklch(0.25 0.06 245);
-  --chart-1: oklch(0.25 0.06 245);
+  --popover-foreground: oklch(0.25 0.03 150);
+  --primary: oklch(0.45 0.1 145); /* Rich earthy green */
+  --primary-foreground: oklch(0.985 0.005 90);
+  --secondary: oklch(0.92 0.04 145); /* Soft sage green */
+  --secondary-foreground: oklch(0.35 0.08 145);
+  --muted: oklch(0.95 0.02 90); /* Warm sand */
+  --muted-foreground: oklch(0.55 0.04 145);
+  --accent: oklch(0.8 0.14 75); /* Sun gold */
+  --accent-foreground: oklch(0.25 0.03 150);
+  --destructive: oklch(0.58 0.18 28);
+  --border: oklch(0.9 0.02 145);
+  --input: oklch(0.9 0.02 145);
+  --ring: oklch(0.45 0.1 145);
+  --chart-1: oklch(0.45 0.1 145);
   --chart-2: oklch(0.8 0.14 75);
-  --chart-3: oklch(0.48 0.12 145); /* Forest Green Accent */
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.99 0.002 240);
-  --sidebar-foreground: oklch(0.15 0.02 240);
-  --sidebar-primary: oklch(0.25 0.06 245);
-  --sidebar-primary-foreground: oklch(0.985 0.005 240);
-  --sidebar-accent: oklch(0.95 0.01 240);
-  --sidebar-accent-foreground: oklch(0.25 0.06 245);
-  --sidebar-border: oklch(0.9 0.01 240);
-  --sidebar-ring: oklch(0.25 0.06 245);
+  --chart-3: oklch(0.92 0.04 145);
+  --chart-4: oklch(0.65 0.12 145);
+  --chart-5: oklch(0.35 0.08 145);
+  --radius: 1rem; /* More rounded for eco-modern */
+  --sidebar: oklch(0.985 0.005 90);
+  --sidebar-foreground: oklch(0.25 0.03 150);
+  --sidebar-primary: oklch(0.45 0.1 145);
+  --sidebar-primary-foreground: oklch(0.985 0.005 90);
+  --sidebar-accent: oklch(0.95 0.02 90);
+  --sidebar-accent-foreground: oklch(0.25 0.03 150);
+  --sidebar-border: oklch(0.9 0.02 145);
+  --sidebar-ring: oklch(0.45 0.1 145);
 }
 
 .dark {

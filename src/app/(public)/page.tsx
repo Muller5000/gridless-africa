@@ -130,37 +130,45 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          <div className="border-border bg-card rounded-xl border p-6 shadow-xs transition-shadow hover:shadow-md">
-            <div className="bg-primary text-primary-foreground mb-4 flex size-10 items-center justify-center rounded-lg">
-              <Calculator className="size-5" />
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="border-border bg-card group flex flex-col justify-between overflow-hidden rounded-3xl border p-8 shadow-sm transition-all hover:shadow-md md:col-span-2 lg:col-span-2 lg:row-span-2">
+            <div>
+              <div className="bg-primary text-primary-foreground mb-6 flex size-12 items-center justify-center rounded-2xl">
+                <Calculator className="size-6" />
+              </div>
+              <h3 className="text-foreground mb-3 text-2xl font-bold tracking-tight">
+                1. Solar Savings Calculator
+              </h3>
+              <p className="text-muted-foreground max-w-md text-sm leading-relaxed">
+                Input your appliances, current monthly fuel spend, and location. Our smart sizer
+                outputs recommended inverter capacity, battery storage, and panel counts
+                instantly—cutting through the confusion.
+              </p>
             </div>
-            <h3 className="text-foreground mb-2 text-lg font-bold">1. Solar Savings Calculator</h3>
-            <p className="text-muted-foreground text-xs leading-relaxed">
-              Input your appliances, current monthly fuel spend, and location. Our sizer outputs
-              recommended inverter, battery, and panel counts instantly.
-            </p>
+            <div className="mt-8 opacity-50 transition-opacity group-hover:opacity-100">
+              <div className="from-primary/10 h-32 w-full rounded-xl bg-gradient-to-br to-transparent" />
+            </div>
           </div>
 
-          <div className="border-border bg-card rounded-xl border p-6 shadow-xs transition-shadow hover:shadow-md">
-            <div className="bg-secondary text-secondary-foreground mb-4 flex size-10 items-center justify-center rounded-lg">
+          <div className="border-border bg-card flex flex-col justify-center rounded-3xl border p-8 shadow-sm transition-all hover:shadow-md lg:col-span-1">
+            <div className="bg-secondary text-secondary-foreground mb-5 flex size-10 items-center justify-center rounded-xl">
               <Compass className="size-5" />
             </div>
-            <h3 className="text-foreground mb-2 text-lg font-bold">2. Geofenced Bidding</h3>
-            <p className="text-muted-foreground text-xs leading-relaxed">
-              Your generated lead is broadcasted to vetted regional installers in Oyo and Lagos.
-              Receive up to 3 competitive, standardized quotes within 48 hours.
+            <h3 className="text-foreground mb-2 text-xl font-bold">2. Geofenced Bidding</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Your generated lead is broadcasted to vetted regional installers. Receive up to 3
+              competitive, standardized quotes within 48 hours.
             </p>
           </div>
 
-          <div className="border-border bg-card rounded-xl border p-6 shadow-xs transition-shadow hover:shadow-md">
-            <div className="bg-primary text-primary-foreground mb-4 flex size-10 items-center justify-center rounded-lg">
+          <div className="border-primary bg-primary text-primary-foreground flex flex-col justify-center rounded-3xl border p-8 shadow-sm transition-all hover:shadow-md lg:col-span-1">
+            <div className="mb-5 flex size-10 items-center justify-center rounded-xl bg-white/20 text-white">
               <ShieldCheck className="size-5" />
             </div>
-            <h3 className="text-foreground mb-2 text-lg font-bold">3. Milestone Escrow Release</h3>
-            <p className="text-muted-foreground text-xs leading-relaxed">
-              Verify each phase of the installation. Once you sign off, Paystack releases that
-              milestone&apos;s funds to the installer. Maximum project safety.
+            <h3 className="mb-2 text-xl font-bold text-white">3. Milestone Escrow Release</h3>
+            <p className="text-primary-foreground/80 text-sm leading-relaxed">
+              Verify each phase. Once you sign off, Paystack releases funds to the installer.
+              Maximum project safety.
             </p>
           </div>
         </div>
