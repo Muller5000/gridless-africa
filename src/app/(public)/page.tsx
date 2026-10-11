@@ -1,7 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { ShieldCheck, Calculator, Compass, ChevronRight, CheckCircle2 } from "lucide-react";
+import {
+  ShieldCheck,
+  Calculator,
+  Compass,
+  ChevronRight,
+  CheckCircle2,
+  ArrowRight,
+} from "lucide-react";
 import { InstallerShowcase } from "@/components/installer-showcase";
 import { GeneratorRoiCalculator } from "@/features/calculator/generator-roi-calculator";
 import { HeroRealityToggle } from "@/components/hero-reality-toggle";
@@ -44,27 +51,21 @@ export default function LandingPage() {
           <HeroRealityToggle />
 
           {/* Centered Action Buttons */}
-          <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:justify-center">
+          <div className="flex flex-col gap-3.5 pt-2 sm:flex-row sm:justify-center">
             <Link
               href="/calculator"
-              className={buttonVariants({
-                size: "lg",
-                className:
-                  "cursor-pointer gap-2 bg-emerald-500 px-8 py-6 text-base font-black text-slate-950 shadow-xl transition-transform hover:scale-105 hover:bg-emerald-400",
-              })}
+              className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-500 px-8 py-4 text-sm font-black text-slate-950 shadow-[0_0_25px_rgba(16,185,129,0.35)] transition-all hover:scale-[1.02] hover:bg-emerald-400 active:scale-[0.98] sm:text-base"
             >
-              <Calculator className="size-5" /> Calculate Your Savings
+              <Calculator className="size-4.5" />
+              <span>Calculate Your Solar Savings</span>
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              href="/login"
-              className={buttonVariants({
-                variant: "outline",
-                size: "lg",
-                className:
-                  "cursor-pointer border-2 border-white/30 bg-white/10 px-8 py-6 text-base font-bold text-white shadow-lg backdrop-blur-md transition-all hover:bg-white/20 hover:text-white",
-              })}
+              href="#installers"
+              className="inline-flex items-center justify-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold text-white shadow-lg backdrop-blur-md transition-all hover:border-white/40 hover:bg-white/20 active:scale-[0.98] sm:text-base"
             >
-              Browse Verified Installers
+              <ShieldCheck className="size-4.5 text-emerald-400" />
+              <span>Browse Verified Installers</span>
             </Link>
           </div>
 
@@ -141,7 +142,10 @@ export default function LandingPage() {
       </section>
 
       {/* Installer Showcase Deck */}
-      <section className="border-border relative w-full overflow-hidden border-b py-20 md:py-28">
+      <section
+        id="installers"
+        className="border-border relative w-full overflow-hidden border-b py-20 md:py-28"
+      >
         {/* Decorative background for glass morphism */}
         <div className="from-primary/10 via-secondary/10 to-primary/10 absolute top-1/2 left-1/2 -z-10 h-full w-[150%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r blur-[100px]" />
 
