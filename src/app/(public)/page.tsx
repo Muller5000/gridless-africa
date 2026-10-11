@@ -14,6 +14,12 @@ import { GeneratorRoiCalculator } from "@/features/calculator/generator-roi-calc
 import { HeroRealityToggle } from "@/components/hero-reality-toggle";
 import DottedTrailCursor from "@/components/ui/dotted-trail-cursor";
 import WaterRippleCarousel, { type Slide } from "@/components/ui/water-ripple-carousel";
+import { CountUp } from "@/components/ui/count-up";
+import { LogoMarquee } from "@/components/logo-marquee";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { TestimonialSection } from "@/components/testimonial-section";
+import { FaqSection } from "@/components/faq-section";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 
 const HERO_SOLAR_SLIDES: Slide[] = [
   {
@@ -24,9 +30,9 @@ const HERO_SOLAR_SLIDES: Slide[] = [
   },
   {
     image: "/hero-solar-powerstation.jpg",
-    title: "Portable Power Station & Solar Backup",
-    caption: "1kVA – 2.5kVA Clean Apartment & Remote Work Backup • Ikeja & Yaba",
-    alt: "Modern Nigerian apartment interior with portable solar power station and foldable solar panel setup",
+    title: "itel PowerTank 2kWh Solar Backup",
+    caption: "Portable Clean Power for Apartments & Remote Work • Ikeja, Yaba & Nationwide",
+    alt: "itel PowerTank 2kWh portable solar power station with foldable solar panel in a modern Nigerian apartment",
   },
   {
     image: "/hero-solar-commercial.jpg",
@@ -126,7 +132,9 @@ export default function LandingPage() {
               <span className="text-muted-foreground text-xs font-bold tracking-wider uppercase">
                 Escrow Protected
               </span>
-              <p className="text-foreground text-2xl font-black">₦180M+</p>
+              <p className="text-foreground text-2xl font-black">
+                <CountUp target={180} prefix="₦" suffix="M+" />
+              </p>
               <p className="text-muted-foreground text-[11px]">Customer funds held safely</p>
             </div>
 
@@ -134,7 +142,9 @@ export default function LandingPage() {
               <span className="text-muted-foreground text-xs font-bold tracking-wider uppercase">
                 Vetted Network
               </span>
-              <p className="text-foreground text-2xl font-black">100%</p>
+              <p className="text-foreground text-2xl font-black">
+                <CountUp target={100} suffix="%" />
+              </p>
               <p className="text-muted-foreground text-[11px]">CAC & COREN registered</p>
             </div>
 
@@ -142,7 +152,9 @@ export default function LandingPage() {
               <span className="text-muted-foreground text-xs font-bold tracking-wider uppercase">
                 Quote Delivery
               </span>
-              <p className="text-foreground text-2xl font-black">&lt; 48 Hrs</p>
+              <p className="text-foreground text-2xl font-black">
+                <CountUp target={48} prefix="< " suffix=" Hrs" />
+              </p>
               <p className="text-muted-foreground text-[11px]">Standardized regional bids</p>
             </div>
 
@@ -156,6 +168,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Equipment & Payment Partners Marquee */}
+      <LogoMarquee />
 
       {/* Generator ROI Calculator Section with Interactive Dotted Trail Background */}
       <section className="border-border relative w-full overflow-hidden border-b">
@@ -208,125 +223,139 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Market Bottlenecks & Solutions Grid */}
-      <section className="container mx-auto max-w-6xl space-y-16 px-4 py-20 md:py-28">
-        <div className="space-y-4 text-center">
-          <h2 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl">
-            How Gridless Africa Works
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            We eliminate the risk of cowboy installers, guarantee equipment standards, and protect
-            your hard-earned money.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <div className="border-border bg-card group flex flex-col justify-between overflow-hidden rounded-3xl border p-10 shadow-sm transition-all hover:shadow-lg md:col-span-2 lg:col-span-2 lg:row-span-2">
-            <div>
-              <div className="bg-primary text-primary-foreground mb-8 flex size-14 items-center justify-center rounded-2xl shadow-sm">
-                <Calculator className="size-7" />
-              </div>
-              <h3 className="text-foreground mb-4 text-3xl font-bold tracking-tight">
-                1. Calculate your exact needs
-              </h3>
-              <p className="text-muted-foreground max-w-md text-base leading-relaxed">
-                Tell us what appliances you want to run. Our smart sizer outputs the exact inverter
-                capacity, battery storage, and panel counts you need. No more overpaying for
-                oversized systems.
-              </p>
-            </div>
-            <div className="mt-10 opacity-60 transition-opacity group-hover:opacity-100">
-              <div className="from-primary/10 h-40 w-full rounded-2xl bg-gradient-to-br to-transparent" />
-            </div>
-          </div>
-
-          <div className="border-border bg-card flex flex-col justify-center rounded-3xl border p-10 shadow-sm transition-all hover:shadow-lg lg:col-span-1">
-            <div className="bg-secondary text-secondary-foreground mb-6 flex size-12 items-center justify-center rounded-2xl shadow-sm">
-              <Compass className="size-6" />
-            </div>
-            <h3 className="text-foreground mb-3 text-2xl font-bold tracking-tight">
-              2. Get competitive quotes
-            </h3>
-            <p className="text-muted-foreground text-base leading-relaxed">
-              We broadcast your requirements to vetted installers in your area. Receive up to 3
-              standardized quotes in 48 hours to compare apples-to-apples.
-            </p>
-          </div>
-
-          <div className="border-primary bg-primary text-primary-foreground flex flex-col justify-center rounded-3xl border p-10 shadow-lg transition-all hover:-translate-y-1 lg:col-span-1">
-            <div className="mb-6 flex size-12 items-center justify-center rounded-2xl bg-white/20 text-white backdrop-blur-sm">
-              <ShieldCheck className="size-6" />
-            </div>
-            <h3 className="mb-3 text-2xl font-bold tracking-tight text-white">
-              3. Pay safely in escrow
-            </h3>
-            <p className="text-primary-foreground/90 text-base leading-relaxed">
-              Your money stays in a secure Paystack account. Installers only get paid when you
-              verify each phase of the installation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Target Audiences: Residential & Commercial */}
-      <section className="bg-muted/30 border-border w-full border-t py-20 md:py-28">
-        <div className="container mx-auto max-w-6xl space-y-14 px-4">
+      {/* How Gridless Africa Works */}
+      <ScrollReveal>
+        <section className="container mx-auto max-w-6xl space-y-16 px-4 py-20 md:py-28">
           <div className="space-y-4 text-center">
             <h2 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Built for Homes and Businesses
+              How Gridless Africa Works
             </h2>
             <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-              Whether you need to power a freezer or an entire factory floor, we&apos;ve got you
-              covered.
+              We eliminate the risk of cowboy installers, guarantee equipment standards, and protect
+              your hard-earned money.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="border-border bg-card flex flex-col justify-between space-y-8 rounded-3xl border p-10 shadow-sm transition-shadow hover:shadow-md">
-              <div className="space-y-5">
-                <div className="bg-primary/10 text-primary inline-flex items-center rounded-full px-4 py-1 text-sm font-bold tracking-wider uppercase">
-                  Residential
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="border-border bg-card group flex flex-col justify-between overflow-hidden rounded-3xl border p-10 shadow-sm transition-all hover:shadow-lg md:col-span-2 lg:col-span-2 lg:row-span-2">
+              <div>
+                <div className="bg-primary text-primary-foreground mb-8 flex size-14 items-center justify-center rounded-2xl shadow-sm">
+                  <Calculator className="size-7" />
                 </div>
-                <h3 className="text-foreground text-3xl font-bold tracking-tight">
-                  Power Your Household
+                <h3 className="text-foreground mb-4 text-3xl font-bold tracking-tight">
+                  1. Calculate your exact needs
                 </h3>
-                <p className="text-muted-foreground text-base leading-relaxed">
-                  Keep the lights on, the AC running, and the freezer cold without the deafening
-                  roar of a generator. Cut your monthly fuel bills and secure your family&apos;s
-                  comfort.
+                <p className="text-muted-foreground max-w-md text-base leading-relaxed">
+                  Tell us what appliances you want to run. Our smart sizer outputs the exact
+                  inverter capacity, battery storage, and panel counts you need. No more overpaying
+                  for oversized systems.
                 </p>
               </div>
-              <Link
-                href="/calculator"
-                className="text-primary flex items-center gap-2 text-base font-bold hover:underline"
-              >
-                Size Your Home System <ChevronRight className="size-5" />
-              </Link>
+              <div className="mt-10 opacity-60 transition-opacity group-hover:opacity-100">
+                <div className="from-primary/10 h-40 w-full rounded-2xl bg-gradient-to-br to-transparent" />
+              </div>
             </div>
 
-            <div className="border-border bg-card flex flex-col justify-between space-y-8 rounded-3xl border p-10 shadow-sm transition-shadow hover:shadow-md">
-              <div className="space-y-5">
-                <div className="bg-secondary/20 text-secondary-foreground inline-flex items-center rounded-full px-4 py-1 text-sm font-bold tracking-wider uppercase">
-                  Commercial
-                </div>
-                <h3 className="text-foreground text-3xl font-bold tracking-tight">
-                  Infrastructure for SMEs
-                </h3>
-                <p className="text-muted-foreground text-base leading-relaxed">
-                  End business downtime. Shield your inventory and operations from grid failures,
-                  protect your operating margins from diesel spikes, and power growth.
-                </p>
+            <div className="border-border bg-card flex flex-col justify-center rounded-3xl border p-10 shadow-sm transition-all hover:shadow-lg lg:col-span-1">
+              <div className="bg-secondary text-secondary-foreground mb-6 flex size-12 items-center justify-center rounded-2xl shadow-sm">
+                <Compass className="size-6" />
               </div>
-              <Link
-                href="/calculator"
-                className="text-primary flex items-center gap-2 text-base font-bold hover:underline"
-              >
-                Estimate SME ROI <ChevronRight className="size-5" />
-              </Link>
+              <h3 className="text-foreground mb-3 text-2xl font-bold tracking-tight">
+                2. Get competitive quotes
+              </h3>
+              <p className="text-muted-foreground text-base leading-relaxed">
+                We broadcast your requirements to vetted installers in your area. Receive up to 3
+                standardized quotes in 48 hours to compare apples-to-apples.
+              </p>
+            </div>
+
+            <div className="border-primary bg-primary text-primary-foreground flex flex-col justify-center rounded-3xl border p-10 shadow-lg transition-all hover:-translate-y-1 lg:col-span-1">
+              <div className="mb-6 flex size-12 items-center justify-center rounded-2xl bg-white/20 text-white backdrop-blur-sm">
+                <ShieldCheck className="size-6" />
+              </div>
+              <h3 className="mb-3 text-2xl font-bold tracking-tight text-white">
+                3. Pay safely in escrow
+              </h3>
+              <p className="text-primary-foreground/90 text-base leading-relaxed">
+                Your money stays in a secure Paystack account. Installers only get paid when you
+                verify each phase of the installation.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
+
+      {/* Customer Social Proof & Testimonials */}
+      <ScrollReveal>
+        <TestimonialSection />
+      </ScrollReveal>
+
+      {/* Target Audiences: Residential & Commercial */}
+      <ScrollReveal>
+        <section className="bg-muted/30 border-border w-full border-t py-20 md:py-28">
+          <div className="container mx-auto max-w-6xl space-y-14 px-4">
+            <div className="space-y-4 text-center">
+              <h2 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl">
+                Built for Homes and Businesses
+              </h2>
+              <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+                Whether you need to power a freezer or an entire factory floor, we&apos;ve got you
+                covered.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              <div className="border-border bg-card flex flex-col justify-between space-y-8 rounded-3xl border p-10 shadow-sm transition-shadow hover:shadow-md">
+                <div className="space-y-5">
+                  <div className="bg-primary/10 text-primary inline-flex items-center rounded-full px-4 py-1 text-sm font-bold tracking-wider uppercase">
+                    Residential
+                  </div>
+                  <h3 className="text-foreground text-3xl font-bold tracking-tight">
+                    Power Your Household
+                  </h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">
+                    Keep the lights on, the AC running, and the freezer cold without the deafening
+                    roar of a generator. Cut your monthly fuel bills and secure your family&apos;s
+                    comfort.
+                  </p>
+                </div>
+                <Link
+                  href="/calculator"
+                  className="text-primary flex items-center gap-2 text-base font-bold hover:underline"
+                >
+                  Size Your Home System <ChevronRight className="size-5" />
+                </Link>
+              </div>
+
+              <div className="border-border bg-card flex flex-col justify-between space-y-8 rounded-3xl border p-10 shadow-sm transition-shadow hover:shadow-md">
+                <div className="space-y-5">
+                  <div className="bg-secondary/20 text-secondary-foreground inline-flex items-center rounded-full px-4 py-1 text-sm font-bold tracking-wider uppercase">
+                    Commercial
+                  </div>
+                  <h3 className="text-foreground text-3xl font-bold tracking-tight">
+                    Infrastructure for SMEs
+                  </h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">
+                    End business downtime. Shield your inventory and operations from grid failures,
+                    protect your operating margins from diesel spikes, and power growth.
+                  </p>
+                </div>
+                <Link
+                  href="/calculator"
+                  className="text-primary flex items-center gap-2 text-base font-bold hover:underline"
+                >
+                  Estimate SME ROI <ChevronRight className="size-5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* Frequently Asked Questions */}
+      <ScrollReveal>
+        <FaqSection />
+      </ScrollReveal>
 
       {/* CTA Footer Section */}
       <section className="bg-primary text-primary-foreground relative w-full overflow-hidden py-24 text-center">
@@ -364,6 +393,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Floating WhatsApp Quick Consultation */}
+      <WhatsAppButton />
     </div>
   );
 }
