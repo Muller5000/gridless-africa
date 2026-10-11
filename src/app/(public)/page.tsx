@@ -1,93 +1,120 @@
 import React from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { ShieldCheck, Calculator, Compass, Zap, ChevronRight } from "lucide-react";
+import { ShieldCheck, Calculator, Compass, ChevronRight, CheckCircle2 } from "lucide-react";
 import { InstallerShowcase } from "@/components/installer-showcase";
 import { GeneratorRoiCalculator } from "@/features/calculator/generator-roi-calculator";
+import { HeroQuickQuote } from "@/components/hero-quick-quote";
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col items-center">
-      {/* Hero Section */}
-      <section className="relative w-full overflow-hidden py-24 md:py-36">
-        {/* Background Video */}
-        <video autoPlay loop muted playsInline className="absolute inset-0 size-full object-cover">
-          <source src="/hero-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      {/* Hero Section: Clean, Split Product Hero */}
+      <section className="border-border/40 from-background via-muted/20 to-background relative w-full overflow-hidden border-b bg-gradient-to-b py-16 md:py-24">
+        {/* Subtle decorative background glow */}
+        <div className="from-primary/10 via-secondary/10 absolute top-0 left-1/2 -z-10 h-[500px] w-full max-w-7xl -translate-x-1/2 rounded-full bg-gradient-to-tr to-transparent opacity-70 blur-[120px]" />
 
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-slate-950/75" />
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+            {/* Left Column: Sharp, High-Trust Copy */}
+            <div className="space-y-6 text-left lg:col-span-7">
+              <div className="border-primary/20 bg-primary/10 text-primary inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-bold">
+                <ShieldCheck className="text-primary size-4" />
+                <span>Nigeria&apos;s Verified Solar Marketplace</span>
+              </div>
 
-        <div className="relative z-10 container mx-auto max-w-5xl space-y-8 px-4 text-center">
-          <div className="animate-fade-in inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-md">
-            <Zap className="size-4 fill-current text-amber-400" /> Nigeria&apos;s Trusted Solar
-            Marketplace
-          </div>
+              <h1 className="text-foreground text-4xl font-black tracking-tight sm:text-5xl md:text-6xl lg:leading-[1.1]">
+                Solar installations you can{" "}
+                <span className="text-primary decoration-secondary underline decoration-wavy decoration-from-font">
+                  actually trust.
+                </span>
+              </h1>
 
-          <h1 className="mx-auto max-w-4xl text-5xl leading-[1.1] font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl">
-            Say goodbye to generator noise.{" "}
-            <span className="text-secondary mt-2 block font-black">Hello, reliable solar.</span>
-          </h1>
+              <p className="text-muted-foreground max-w-xl text-base leading-relaxed sm:text-lg">
+                Stop gambling with unverified contractors or counterfeit equipment. Compare
+                standardized quotes from CAC-registered solar engineers in your State, and hold your
+                payment safely in escrow until the power is turned on.
+              </p>
 
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-            We make switching to solar safe and simple. Compare quotes from verified local
-            installers, calculate your exact savings, and pay safely through escrow.
-          </p>
+              {/* Value Pillars */}
+              <div className="text-foreground space-y-2.5 pt-2 text-sm font-semibold">
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="size-4.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                  <span>100% Milestone-based Paystack escrow (Zero upfront risk)</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="size-4.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                  <span>Only CAC-verified, vetted engineering firms</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="size-4.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                  <span>Standardized equipment specs (Tier-1 Panels & Lithium)</span>
+                </div>
+              </div>
 
-          <div className="flex flex-col gap-4 pt-6 sm:flex-row sm:justify-center">
-            <Link
-              href="/calculator"
-              className={buttonVariants({
-                variant: "secondary",
-                size: "lg",
-                className:
-                  "cursor-pointer gap-2 px-8 py-6 text-lg font-bold shadow-lg transition-transform hover:scale-105",
-              })}
-            >
-              <Calculator className="size-5" /> Calculate Your Savings
-            </Link>
-            <Link
-              href="/installers"
-              className={buttonVariants({
-                variant: "ghost",
-                size: "lg",
-                className:
-                  "cursor-pointer border-2 border-white/30 px-8 py-6 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:text-white",
-              })}
-            >
-              Browse Verified Installers
-            </Link>
+              {/* Social Proof Snippet */}
+              <div className="border-border/60 flex items-center gap-4 border-t pt-2">
+                <div className="flex -space-x-2 overflow-hidden">
+                  <div className="bg-primary/20 text-primary ring-background inline-flex size-8 items-center justify-center rounded-full text-xs font-bold ring-2">
+                    AO
+                  </div>
+                  <div className="bg-secondary/30 text-secondary-foreground ring-background inline-flex size-8 items-center justify-center rounded-full text-xs font-bold ring-2">
+                    BE
+                  </div>
+                  <div className="ring-background inline-flex size-8 items-center justify-center rounded-full bg-emerald-500/20 text-xs font-bold text-emerald-700 ring-2">
+                    CM
+                  </div>
+                </div>
+                <p className="text-muted-foreground text-xs font-medium">
+                  Protecting homeowners & businesses across{" "}
+                  <strong className="text-foreground">Lagos, Oyo, Abuja & Port Harcourt</strong>.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column: Interactive Quick Sizer & Quote Match Widget */}
+            <div className="flex justify-center lg:col-span-5">
+              <HeroQuickQuote />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Escrow Trust Shield Banner */}
-      <section className="border-border bg-card w-full border-y py-8 shadow-sm">
-        <div className="container mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 md:flex-row">
-          <div className="flex items-center space-x-4 text-left">
-            <div className="flex size-14 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-600">
-              <ShieldCheck className="size-8" />
+      {/* Trust & Impact Bar */}
+      <section className="border-border bg-card w-full border-b py-8 shadow-xs">
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+            <div className="border-border/60 space-y-1 border-r pr-4 text-center last:border-none md:text-left">
+              <span className="text-muted-foreground text-xs font-bold tracking-wider uppercase">
+                Escrow Protected
+              </span>
+              <p className="text-foreground text-2xl font-black">₦180M+</p>
+              <p className="text-muted-foreground text-[11px]">Customer funds held safely</p>
             </div>
-            <div>
-              <h3 className="text-foreground text-lg font-bold tracking-tight">
-                Your Money is Safe.
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                We hold your payment in escrow. Installers only get paid when the job is done right.
-              </p>
+
+            <div className="border-border/60 space-y-1 border-r pr-4 text-center last:border-none md:text-left">
+              <span className="text-muted-foreground text-xs font-bold tracking-wider uppercase">
+                Vetted Network
+              </span>
+              <p className="text-foreground text-2xl font-black">100%</p>
+              <p className="text-muted-foreground text-[11px]">CAC & COREN registered</p>
             </div>
-          </div>
-          <div className="text-muted-foreground flex flex-wrap items-center justify-center gap-6 text-sm font-semibold md:justify-end">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="size-4 text-emerald-500" /> Paystack Secure
-            </span>
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="size-4 text-emerald-500" /> CAC Verified Pros
-            </span>
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="size-4 text-emerald-500" /> Milestone Payouts
-            </span>
+
+            <div className="border-border/60 space-y-1 border-r pr-4 text-center last:border-none md:text-left">
+              <span className="text-muted-foreground text-xs font-bold tracking-wider uppercase">
+                Quote Delivery
+              </span>
+              <p className="text-foreground text-2xl font-black">&lt; 48 Hrs</p>
+              <p className="text-muted-foreground text-[11px]">Standardized regional bids</p>
+            </div>
+
+            <div className="space-y-1 text-center md:text-left">
+              <span className="text-muted-foreground text-xs font-bold tracking-wider uppercase">
+                Partner Security
+              </span>
+              <p className="text-2xl font-black text-emerald-600 dark:text-emerald-400">Paystack</p>
+              <p className="text-muted-foreground text-[11px]">Milestone automated release</p>
+            </div>
           </div>
         </div>
       </section>
@@ -252,9 +279,6 @@ export default function LandingPage() {
 
       {/* CTA Footer Section */}
       <section className="bg-primary text-primary-foreground relative w-full overflow-hidden py-24 text-center">
-        {/* Abstract background elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-10" />
-
         <div className="relative z-10 container mx-auto max-w-4xl space-y-8 px-4">
           <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             Ready to flip the switch?
