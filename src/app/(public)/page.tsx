@@ -1,7 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { ShieldCheck, Calculator, Compass, ChevronRight, CheckCircle2 } from "lucide-react";
+import {
+  ShieldCheck,
+  Calculator,
+  Compass,
+  ChevronRight,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 import { InstallerShowcase } from "@/components/installer-showcase";
 import { GeneratorRoiCalculator } from "@/features/calculator/generator-roi-calculator";
 import { HeroQuickQuote } from "@/components/hero-quick-quote";
@@ -9,15 +16,15 @@ import { HeroQuickQuote } from "@/components/hero-quick-quote";
 export default function LandingPage() {
   return (
     <div className="flex flex-col items-center">
-      {/* Hero Section: Clean, Split Product Hero */}
-      <section className="border-border/40 from-background via-muted/20 to-background relative w-full overflow-hidden border-b bg-gradient-to-b py-16 md:py-24">
+      {/* Hero Section: Rich Visual Showcase + Instant Quote Match */}
+      <section className="border-border/40 from-background via-muted/20 to-background relative w-full overflow-hidden border-b bg-gradient-to-b pt-12 pb-20 md:pt-20 md:pb-28">
         {/* Subtle decorative background glow */}
-        <div className="from-primary/10 via-secondary/10 absolute top-0 left-1/2 -z-10 h-[500px] w-full max-w-7xl -translate-x-1/2 rounded-full bg-gradient-to-tr to-transparent opacity-70 blur-[120px]" />
+        <div className="from-primary/10 via-secondary/10 absolute top-0 left-1/2 -z-10 h-[500px] w-full max-w-7xl -translate-x-1/2 rounded-full bg-gradient-to-tr to-transparent opacity-70 blur-[140px]" />
 
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-            {/* Left Column: Sharp, High-Trust Copy */}
-            <div className="space-y-6 text-left lg:col-span-7">
+        <div className="container mx-auto max-w-6xl space-y-12 px-4">
+          {/* Top Headline & Value Narrative Block */}
+          <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
+            <div className="space-y-4 lg:col-span-8">
               <div className="border-primary/20 bg-primary/10 text-primary inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-bold">
                 <ShieldCheck className="text-primary size-4" />
                 <span>Nigeria&apos;s Verified Solar Marketplace</span>
@@ -29,51 +36,82 @@ export default function LandingPage() {
                   actually trust.
                 </span>
               </h1>
+            </div>
 
-              <p className="text-muted-foreground max-w-xl text-base leading-relaxed sm:text-lg">
+            <div className="space-y-3 text-left lg:col-span-4">
+              <p className="text-muted-foreground text-sm leading-relaxed sm:text-base">
                 Stop gambling with unverified contractors or counterfeit equipment. Compare
-                standardized quotes from CAC-registered solar engineers in your State, and hold your
-                payment safely in escrow until the power is turned on.
+                standardized quotes from CAC-registered engineers, and hold your payment safely in
+                escrow until the job passes inspection.
               </p>
+              <div className="text-foreground flex items-center gap-3 text-xs font-bold">
+                <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="size-4" /> 100% Escrow Protected
+                </span>
+                <span className="text-muted-foreground">•</span>
+                <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="size-4" /> Vetted CAC Installers
+                </span>
+              </div>
+            </div>
+          </div>
 
-              {/* Value Pillars */}
-              <div className="text-foreground space-y-2.5 pt-2 text-sm font-semibold">
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="size-4.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                  <span>100% Milestone-based Paystack escrow (Zero upfront risk)</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="size-4.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                  <span>Only CAC-verified, vetted engineering firms</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="size-4.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                  <span>Standardized equipment specs (Tier-1 Panels & Lithium)</span>
-                </div>
+          {/* Centerpiece: Visual Solar Home Image + Quick Quote Match Widget Side-by-Side */}
+          <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12">
+            {/* Left Column: Visual Architectural Solar Home Photo with Component Highlights */}
+            <div className="group border-border/80 relative flex min-h-[460px] flex-col justify-between overflow-hidden rounded-3xl border p-6 shadow-2xl transition-all sm:p-8 lg:col-span-7">
+              {/* Background Solar Home Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                style={{ backgroundImage: `url('/hero-solar-home.jpg')` }}
+              />
+
+              {/* Gradient Scrim for text readability and cinematic depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent" />
+
+              {/* Top Floating Badge */}
+              <div className="relative z-10 flex items-center justify-between">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-slate-950/80 px-3.5 py-1.5 text-xs font-extrabold text-white shadow-md backdrop-blur-md">
+                  <Sparkles className="size-3.5 text-amber-400" /> Turnkey 5kVA Residential Setup
+                </span>
+                <span className="rounded-full bg-emerald-500/90 px-3 py-1 text-[11px] font-bold text-white shadow-md">
+                  Active • Lagos State
+                </span>
               </div>
 
-              {/* Social Proof Snippet */}
-              <div className="border-border/60 flex items-center gap-4 border-t pt-2">
-                <div className="flex -space-x-2 overflow-hidden">
-                  <div className="bg-primary/20 text-primary ring-background inline-flex size-8 items-center justify-center rounded-full text-xs font-bold ring-2">
-                    AO
+              {/* Bottom Hardware Specs Callout */}
+              <div className="relative z-10 space-y-3">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                  <div className="rounded-2xl border border-white/20 bg-slate-950/75 p-3 text-white shadow-lg backdrop-blur-md">
+                    <span className="block text-[10px] font-bold tracking-wider text-slate-300 uppercase">
+                      Rooftop Solar Array
+                    </span>
+                    <p className="mt-0.5 text-xs font-extrabold sm:text-sm">
+                      8× 550W Tier-1 Panels
+                    </p>
                   </div>
-                  <div className="bg-secondary/30 text-secondary-foreground ring-background inline-flex size-8 items-center justify-center rounded-full text-xs font-bold ring-2">
-                    BE
+                  <div className="rounded-2xl border border-white/20 bg-slate-950/75 p-3 text-white shadow-lg backdrop-blur-md">
+                    <span className="block text-[10px] font-bold tracking-wider text-slate-300 uppercase">
+                      Lithium Storage
+                    </span>
+                    <p className="mt-0.5 text-xs font-extrabold sm:text-sm">
+                      10kWh LiFePO4 Battery
+                    </p>
                   </div>
-                  <div className="ring-background inline-flex size-8 items-center justify-center rounded-full bg-emerald-500/20 text-xs font-bold text-emerald-700 ring-2">
-                    CM
+                  <div className="col-span-2 rounded-2xl border border-white/20 bg-slate-950/75 p-3 text-white shadow-lg backdrop-blur-md sm:col-span-1">
+                    <span className="block text-[10px] font-bold tracking-wider text-slate-300 uppercase">
+                      Payment Safety
+                    </span>
+                    <p className="mt-0.5 text-xs font-extrabold text-emerald-400 sm:text-sm">
+                      Paystack Escrow
+                    </p>
                   </div>
                 </div>
-                <p className="text-muted-foreground text-xs font-medium">
-                  Protecting homeowners & businesses across{" "}
-                  <strong className="text-foreground">Lagos, Oyo, Abuja & Port Harcourt</strong>.
-                </p>
               </div>
             </div>
 
             {/* Right Column: Interactive Quick Sizer & Quote Match Widget */}
-            <div className="flex justify-center lg:col-span-5">
+            <div className="flex flex-col justify-center lg:col-span-5">
               <HeroQuickQuote />
             </div>
           </div>
