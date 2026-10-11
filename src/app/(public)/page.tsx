@@ -1,14 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import {
-  ShieldCheck,
-  Calculator,
-  Compass,
-  ChevronRight,
-  CheckCircle2,
-  ArrowRight,
-} from "lucide-react";
+import { ShieldCheck, Calculator, ChevronRight, CheckCircle2, ArrowRight } from "lucide-react";
 import { InstallerShowcase } from "@/components/installer-showcase";
 import { GeneratorRoiCalculator } from "@/features/calculator/generator-roi-calculator";
 import { HeroRealityToggle } from "@/components/hero-reality-toggle";
@@ -20,6 +13,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { TestimonialSection } from "@/components/testimonial-section";
 import { FaqSection } from "@/components/faq-section";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { HowItWorksTimeline } from "@/components/how-it-works-timeline";
 
 const HERO_SOLAR_SLIDES: Slide[] = [
   {
@@ -223,66 +217,9 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* How Gridless Africa Works */}
+      {/* How Gridless Africa Works: Connected 3-Step Journey Timeline */}
       <ScrollReveal>
-        <section className="container mx-auto max-w-6xl space-y-16 px-4 py-20 md:py-28">
-          <div className="space-y-4 text-center">
-            <h2 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl">
-              How Gridless Africa Works
-            </h2>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-              We eliminate the risk of cowboy installers, guarantee equipment standards, and protect
-              your hard-earned money.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div className="border-border bg-card group flex flex-col justify-between overflow-hidden rounded-3xl border p-10 shadow-sm transition-all hover:shadow-lg md:col-span-2 lg:col-span-2 lg:row-span-2">
-              <div>
-                <div className="bg-primary text-primary-foreground mb-8 flex size-14 items-center justify-center rounded-2xl shadow-sm">
-                  <Calculator className="size-7" />
-                </div>
-                <h3 className="text-foreground mb-4 text-3xl font-bold tracking-tight">
-                  1. Calculate your exact needs
-                </h3>
-                <p className="text-muted-foreground max-w-md text-base leading-relaxed">
-                  Tell us what appliances you want to run. Our smart sizer outputs the exact
-                  inverter capacity, battery storage, and panel counts you need. No more overpaying
-                  for oversized systems.
-                </p>
-              </div>
-              <div className="mt-10 opacity-60 transition-opacity group-hover:opacity-100">
-                <div className="from-primary/10 h-40 w-full rounded-2xl bg-gradient-to-br to-transparent" />
-              </div>
-            </div>
-
-            <div className="border-border bg-card flex flex-col justify-center rounded-3xl border p-10 shadow-sm transition-all hover:shadow-lg lg:col-span-1">
-              <div className="bg-secondary text-secondary-foreground mb-6 flex size-12 items-center justify-center rounded-2xl shadow-sm">
-                <Compass className="size-6" />
-              </div>
-              <h3 className="text-foreground mb-3 text-2xl font-bold tracking-tight">
-                2. Get competitive quotes
-              </h3>
-              <p className="text-muted-foreground text-base leading-relaxed">
-                We broadcast your requirements to vetted installers in your area. Receive up to 3
-                standardized quotes in 48 hours to compare apples-to-apples.
-              </p>
-            </div>
-
-            <div className="border-primary bg-primary text-primary-foreground flex flex-col justify-center rounded-3xl border p-10 shadow-lg transition-all hover:-translate-y-1 lg:col-span-1">
-              <div className="mb-6 flex size-12 items-center justify-center rounded-2xl bg-white/20 text-white backdrop-blur-sm">
-                <ShieldCheck className="size-6" />
-              </div>
-              <h3 className="mb-3 text-2xl font-bold tracking-tight text-white">
-                3. Pay safely in escrow
-              </h3>
-              <p className="text-primary-foreground/90 text-base leading-relaxed">
-                Your money stays in a secure Paystack account. Installers only get paid when you
-                verify each phase of the installation.
-              </p>
-            </div>
-          </div>
-        </section>
+        <HowItWorksTimeline />
       </ScrollReveal>
 
       {/* Customer Social Proof & Testimonials */}
