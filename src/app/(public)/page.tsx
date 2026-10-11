@@ -13,76 +13,109 @@ import { InstallerShowcase } from "@/components/installer-showcase";
 import { GeneratorRoiCalculator } from "@/features/calculator/generator-roi-calculator";
 import { HeroRealityToggle } from "@/components/hero-reality-toggle";
 import DottedTrailCursor from "@/components/ui/dotted-trail-cursor";
+import WaterRippleCarousel, { type Slide } from "@/components/ui/water-ripple-carousel";
+
+const HERO_SOLAR_SLIDES: Slide[] = [
+  {
+    image: "/hero-solar-home.jpg",
+    title: "Residential Solar Villa",
+    caption: "5kVA – 15kVA Turnkey Hybrid Systems • Lekki & Ikoyi, Lagos",
+    alt: "Contemporary Nigerian solar duplex with rooftop solar panels and LiFePO4 battery system",
+  },
+  {
+    image: "/hero-solar-powerstation.jpg",
+    title: "Portable Power Station & Solar Backup",
+    caption: "1kVA – 2.5kVA Clean Apartment & Remote Work Backup • Ikeja & Yaba",
+    alt: "Modern Nigerian apartment interior with portable solar power station and foldable solar panel setup",
+  },
+  {
+    image: "/hero-solar-commercial.jpg",
+    title: "Commercial & Industrial Rooftop Array",
+    caption: "25kVA – 100kVA+ Industrial Hybrid Microgrid • Ikeja Industrial & Victoria Island",
+    alt: "Commercial office headquarters in Lagos with high-capacity industrial rooftop solar array",
+  },
+];
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col items-center">
-      {/* Hero Section: Authentic Nigerian Home Background with Cinematic Overlay & Centered Copy */}
-      <section className="relative w-full overflow-hidden py-24 md:py-36">
-        {/* Authentic Contemporary Nigerian Home Background Image */}
-        <div
-          className="absolute inset-0 scale-105 bg-cover bg-center transition-transform duration-1000"
-          style={{ backgroundImage: `url('/hero-solar-home.jpg')` }}
-        />
+      {/* Hero Section: Interactive Water Ripple Carousel with Nigerian Solar Setups */}
+      <section className="relative w-full overflow-hidden">
+        <WaterRippleCarousel
+          slides={HERO_SOLAR_SLIDES}
+          height="auto"
+          duration={1800}
+          strength={1.2}
+          autoplay={7500}
+          ink="#10b981"
+          className="min-h-[720px] w-full md:min-h-[800px]"
+        >
+          {/* Cinematic gradient overlay for optimal legibility without murky darkness */}
+          <div className="pointer-events-none absolute inset-0 bg-slate-950/65 backdrop-blur-[0.5px]" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-slate-950/50" />
 
-        {/* Cinematic gradient overlay for optimal legibility without murky darkness */}
-        <div className="absolute inset-0 bg-slate-950/65 backdrop-blur-[0.5px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-950/40" />
+          <div className="pointer-events-none relative z-10 container mx-auto max-w-4xl space-y-8 px-4 py-24 text-center md:py-36">
+            {/* Badge */}
+            <div className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
+              <ShieldCheck className="size-4 text-emerald-400" />
+              <span>Nigeria&apos;s Verified Solar Marketplace</span>
+            </div>
 
-        <div className="relative z-10 container mx-auto max-w-4xl space-y-8 px-4 text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
-            <ShieldCheck className="size-4 text-emerald-400" />
-            <span>Nigeria&apos;s Verified Solar Marketplace</span>
+            {/* Center Headline */}
+            <h1 className="mx-auto max-w-3xl text-4xl font-black tracking-tight text-white sm:text-5xl md:text-6xl lg:leading-[1.15]">
+              Solar installations you can <span className="text-emerald-400">actually trust.</span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg md:text-xl">
+              Stop gambling with unverified contractors or counterfeit equipment. Compare
+              standardized bids from CAC-vetted Nigerian engineers, and hold your payment safely in
+              Paystack escrow until the job passes inspection.
+            </p>
+
+            {/* Interactive Reality Switcher (Concept 2) */}
+            <div className="pointer-events-auto">
+              <HeroRealityToggle />
+            </div>
+
+            {/* Centered Action Buttons */}
+            <div className="pointer-events-auto flex flex-col gap-3.5 pt-2 sm:flex-row sm:justify-center">
+              <Link
+                href="/calculator"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-500 px-8 py-4 text-sm font-black text-slate-950 shadow-[0_0_25px_rgba(16,185,129,0.35)] transition-all hover:scale-[1.02] hover:bg-emerald-400 active:scale-[0.98] sm:text-base"
+              >
+                <Calculator className="size-4.5" />
+                <span>Calculate Your Solar Savings</span>
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="#installers"
+                className="inline-flex items-center justify-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold text-white shadow-lg backdrop-blur-md transition-all hover:border-white/40 hover:bg-white/20 active:scale-[0.98] sm:text-base"
+              >
+                <ShieldCheck className="size-4.5 text-emerald-400" />
+                <span>Browse Verified Installers</span>
+              </Link>
+            </div>
+
+            {/* Trust Pillars */}
+            <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-xs font-semibold text-slate-300">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="size-4 text-emerald-400" /> 100% Paystack Escrow
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="size-4 text-emerald-400" /> Vetted CAC Installers
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="size-4 text-emerald-400" /> Guaranteed Tier-1 Hardware
+              </span>
+            </div>
+
+            {/* Subtle Interactive Hint */}
+            <div className="pt-2 text-[11px] font-medium tracking-wide text-white/50">
+              <span>✦ Tap or click anywhere on the background to ripple between solar setups</span>
+            </div>
           </div>
-
-          {/* Center Headline */}
-          <h1 className="mx-auto max-w-3xl text-4xl font-black tracking-tight text-white sm:text-5xl md:text-6xl lg:leading-[1.15]">
-            Solar installations you can <span className="text-emerald-400">actually trust.</span>
-          </h1>
-
-          {/* Subtitle */}
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg md:text-xl">
-            Stop gambling with unverified contractors or counterfeit equipment. Compare standardized
-            bids from CAC-vetted Nigerian engineers, and hold your payment safely in Paystack escrow
-            until the job passes inspection.
-          </p>
-
-          {/* Interactive Reality Switcher (Concept 2) */}
-          <HeroRealityToggle />
-
-          {/* Centered Action Buttons */}
-          <div className="flex flex-col gap-3.5 pt-2 sm:flex-row sm:justify-center">
-            <Link
-              href="/calculator"
-              className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-500 px-8 py-4 text-sm font-black text-slate-950 shadow-[0_0_25px_rgba(16,185,129,0.35)] transition-all hover:scale-[1.02] hover:bg-emerald-400 active:scale-[0.98] sm:text-base"
-            >
-              <Calculator className="size-4.5" />
-              <span>Calculate Your Solar Savings</span>
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="#installers"
-              className="inline-flex items-center justify-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold text-white shadow-lg backdrop-blur-md transition-all hover:border-white/40 hover:bg-white/20 active:scale-[0.98] sm:text-base"
-            >
-              <ShieldCheck className="size-4.5 text-emerald-400" />
-              <span>Browse Verified Installers</span>
-            </Link>
-          </div>
-
-          {/* Trust Pillars */}
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-xs font-semibold text-slate-300">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="size-4 text-emerald-400" /> 100% Paystack Escrow
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="size-4 text-emerald-400" /> Vetted CAC Installers
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="size-4 text-emerald-400" /> Guaranteed Tier-1 Hardware
-            </span>
-          </div>
-        </div>
+        </WaterRippleCarousel>
       </section>
 
       {/* Trust & Impact Bar */}
