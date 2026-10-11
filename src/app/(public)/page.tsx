@@ -4,6 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { ShieldCheck, Calculator, Compass, ChevronRight, CheckCircle2 } from "lucide-react";
 import { InstallerShowcase } from "@/components/installer-showcase";
 import { GeneratorRoiCalculator } from "@/features/calculator/generator-roi-calculator";
+import { HeroRealityToggle } from "@/components/hero-reality-toggle";
 
 export default function LandingPage() {
   return (
@@ -38,6 +39,9 @@ export default function LandingPage() {
             bids from CAC-vetted Nigerian engineers, and hold your payment safely in Paystack escrow
             until the job passes inspection.
           </p>
+
+          {/* Interactive Reality Switcher (Concept 2) */}
+          <HeroRealityToggle />
 
           {/* Centered Action Buttons */}
           <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:justify-center">
