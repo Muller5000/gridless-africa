@@ -131,7 +131,7 @@ export default function LandingPage() {
               in Nigeria. No fluff, just math.
             </p>
           </div>
-          <div className="border-border bg-card rounded-3xl border p-2 shadow-xl md:p-4">
+          <div className="mx-auto flex justify-center">
             <GeneratorRoiCalculator />
           </div>
         </div>
