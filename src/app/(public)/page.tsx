@@ -12,6 +12,7 @@ import {
 import { InstallerShowcase } from "@/components/installer-showcase";
 import { GeneratorRoiCalculator } from "@/features/calculator/generator-roi-calculator";
 import { HeroRealityToggle } from "@/components/hero-reality-toggle";
+import DottedTrailCursor from "@/components/ui/dotted-trail-cursor";
 
 export default function LandingPage() {
   return (
@@ -123,22 +124,32 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Generator ROI Calculator Section */}
-      <section className="border-border bg-muted/20 w-full border-b py-20 md:py-28">
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="mb-12 space-y-4 text-center">
-            <h2 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Stop burning cash on diesel.
-            </h2>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-              Use our interactive calculator to see exactly how fast a solar system pays for itself
-              in Nigeria. No fluff, just math.
-            </p>
+      {/* Generator ROI Calculator Section with Interactive Dotted Trail Background */}
+      <section className="border-border relative w-full overflow-hidden border-b">
+        <DottedTrailCursor
+          colorA="#10b981"
+          colorB="#f59e0b"
+          dotSpacing={36}
+          dotRadius={1.3}
+          glowRadius={220}
+          headRadius={60}
+          className="w-full py-20 md:py-28"
+        >
+          <div className="container mx-auto max-w-6xl px-4">
+            <div className="mb-12 space-y-4 text-center">
+              <h2 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl">
+                Stop burning cash on diesel.
+              </h2>
+              <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+                Use our interactive calculator to see exactly how fast a solar system pays for
+                itself in Nigeria. No fluff, just math.
+              </p>
+            </div>
+            <div className="mx-auto flex justify-center">
+              <GeneratorRoiCalculator />
+            </div>
           </div>
-          <div className="mx-auto flex justify-center">
-            <GeneratorRoiCalculator />
-          </div>
-        </div>
+        </DottedTrailCursor>
       </section>
 
       {/* Installer Showcase Deck */}
