@@ -51,7 +51,7 @@ export default function LandingPage() {
           className="min-h-[580px] w-full md:min-h-[640px]"
         >
           {/* Cinematic gradient overlay for optimal legibility without murky darkness */}
-          <div className="pointer-events-none absolute inset-0 bg-slate-950/65 backdrop-blur-[0.5px]" />
+          <div className="pointer-events-none absolute inset-0 bg-slate-950/70" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-slate-950/50" />
 
           <div className="pointer-events-none relative z-10 container mx-auto max-w-4xl space-y-6 px-4 py-20 text-center md:py-28">

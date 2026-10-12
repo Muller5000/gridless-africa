@@ -281,10 +281,33 @@ type LayerProps = {
   onDone: () => void;
 };
 
+const IMAGE_CACHE = new Map<string, Promise<HTMLImageElement>>();
+
+function preloadImage(src: string): Promise<HTMLImageElement> {
+  if (IMAGE_CACHE.has(src)) return IMAGE_CACHE.get(src)!;
+  const p = new Promise<HTMLImageElement>((res, rej) => {
+    const im = new Image();
+    im.crossOrigin = "anonymous";
+    im.onload = () => {
+      if ("decode" in im) {
+        im.decode()
+          .catch(() => undefined)
+          .then(() => res(im));
+      } else {
+        res(im);
+      }
+    };
+    im.onerror = rej;
+    im.src = src;
+  });
+  IMAGE_CACHE.set(src, p);
+  return p;
+}
+
 const RIPPLE_VERT =
   "attribute vec2 p;varying vec2 uv;void main(){uv=p*.5+.5;gl_Position=vec4(p,0.,1.);}";
 const RIPPLE_FRAG = [
-  "precision highp float;",
+  "precision mediump float;",
   "varying vec2 uv;",
   "uniform sampler2D A,B;",
   "uniform vec2 c,ca,cb;",
@@ -315,7 +338,9 @@ function Layer({ from, to, x, y, w, h, duration, opts, onDone }: LayerProps) {
   React.useEffect(() => {
     if (reduce) return;
     const cv = ref.current;
-    const gl = cv ? cv.getContext("webgl", { premultipliedAlpha: false }) : null;
+    const gl = cv
+      ? cv.getContext("webgl", { premultipliedAlpha: false, powerPreference: "high-performance" })
+      : null;
     if (!cv || !gl) {
       done.current();
       return;
@@ -342,19 +367,8 @@ function Layer({ from, to, x, y, w, h, duration, opts, onDone }: LayerProps) {
     gl.enableVertexAttribArray(0);
     gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
     const U = (k: string) => gl.getUniformLocation(prog, k);
-    const load = (src: string) =>
-      new Promise<HTMLImageElement>((res, rej) => {
-        const im = new Image();
-        im.crossOrigin = "anonymous";
-        im.onload = () =>
-          im
-            .decode()
-            .catch(() => undefined)
-            .then(() => res(im));
-        im.onerror = rej;
-        im.src = src;
-      });
-    Promise.all([load(from), load(to)])
+
+    Promise.all([preloadImage(from), preloadImage(to)])
       .then((list) => {
         if (dead) return;
         const [a, b] = list;
@@ -367,7 +381,8 @@ function Layer({ from, to, x, y, w, h, duration, opts, onDone }: LayerProps) {
           gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
           gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
         });
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        // Cap dpr to 1.25 to prevent 4K multi-million pixel GPU fill rate stalls
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
         cv.width = Math.round(w * dpr);
         cv.height = Math.round(h * dpr);
         gl.viewport(0, 0, cv.width, cv.height);
@@ -396,7 +411,6 @@ function Layer({ from, to, x, y, w, h, duration, opts, onDone }: LayerProps) {
     };
   }, [from, to, x, y, w, h, duration, opts, reduce]);
 
-  // eslint-disable-next-line @next/next/no-img-element
   if (reduce)
     return (
       <img className="wr-in wr-fade" src={to} alt="" aria-hidden="true" onAnimationEnd={onDone} />
@@ -407,9 +421,9 @@ function Layer({ from, to, x, y, w, h, duration, opts, onDone }: LayerProps) {
 const WR_CSS = [
   ".wr-root{position:relative;width:100%;overflow:hidden;background:#0d0d0f;color:var(--wr-ink);user-select:none;-webkit-user-select:none;touch-action:pan-y;outline:none;cursor:pointer}",
   ".wr-root:focus-visible{box-shadow:inset 0 0 0 2px var(--wr-ink)}",
-  ".wr-base{position:absolute;inset:0}",
-  ".wr-img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;display:block;pointer-events:none}",
-  ".wr-in{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}",
+  ".wr-base{position:absolute;inset:0;transform:translateZ(0);backface-visibility:hidden}",
+  ".wr-img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;display:block;pointer-events:none;transform:translateZ(0)}",
+  ".wr-in{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;transform:translateZ(0);backface-visibility:hidden;will-change:transform}",
   ".wr-fade{max-width:none;object-fit:cover;animation:wr-fade .35s ease both}",
   "@keyframes wr-fade{from{opacity:0}to{opacity:1}}",
   ".wr-shade{position:absolute;inset:auto 0 0 0;height:46%;background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0));pointer-events:none}",
@@ -502,10 +516,10 @@ export default function WaterRippleCarousel({
     onChange?.(index);
   }, [index, onChange]);
 
-  // warm cache
+  // warm cache and pre-decode images ahead of time
   React.useEffect(() => {
     srcs.forEach((src) => {
-      if (src) new Image().src = src;
+      if (src) preloadImage(src);
     });
   }, [srcs]);
 
@@ -573,7 +587,7 @@ export default function WaterRippleCarousel({
     >
       <style>{WR_CSS}</style>
       <div className="wr-base">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {}
         {srcs[index] ? (
           <img
             className="wr-img"
