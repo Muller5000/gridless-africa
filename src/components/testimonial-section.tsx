@@ -74,6 +74,8 @@ function getReducedMotionServerSnapshot(): boolean {
 export function TestimonialSection({ className }: { className?: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isProgrammaticScroll = useRef(false);
 
@@ -82,6 +84,28 @@ export function TestimonialSection({ className }: { className?: string }) {
     getReducedMotionSnapshot,
     getReducedMotionServerSnapshot,
   );
+
+  // Track if testimonial section is in viewport so background auto-rotate does not run
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      const raf = requestAnimationFrame(() => setIsInView(true));
+      return () => cancelAnimationFrame(raf);
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry) {
+          setIsInView(entry.isIntersecting);
+        }
+      },
+      { threshold: 0.15 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const goToSlide = useCallback(
     (index: number) => {
@@ -95,10 +119,10 @@ export function TestimonialSection({ className }: { className?: string }) {
       const target = slides[targetIndex];
       if (target) {
         isProgrammaticScroll.current = true;
-        target.scrollIntoView({
+        // Scroll ONLY the container horizontally without moving the window/page scroll
+        container.scrollTo({
+          left: target.offsetLeft,
           behavior: prefersReducedMotion ? "auto" : "smooth",
-          block: "nearest",
-          inline: "start",
         });
         window.setTimeout(() => {
           isProgrammaticScroll.current = false;
@@ -108,9 +132,9 @@ export function TestimonialSection({ className }: { className?: string }) {
     [prefersReducedMotion],
   );
 
-  // Auto-rotate every 6 seconds
+  // Auto-rotate every 6 seconds ONLY when in view and not paused
   useEffect(() => {
-    if (isPaused || prefersReducedMotion) {
+    if (isPaused || prefersReducedMotion || !isInView) {
       return;
     }
 
@@ -121,7 +145,7 @@ export function TestimonialSection({ className }: { className?: string }) {
     return () => {
       clearInterval(interval);
     };
-  }, [currentIndex, goToSlide, isPaused, prefersReducedMotion]);
+  }, [currentIndex, goToSlide, isPaused, prefersReducedMotion, isInView]);
 
   // Sync index on manual scroll / swipe
   const handleScroll = () => {
@@ -141,6 +165,7 @@ export function TestimonialSection({ className }: { className?: string }) {
 
   return (
     <section
+      ref={sectionRef}
       className={cn("bg-muted/30 w-full overflow-hidden py-16 sm:py-24", className)}
       aria-roledescription="carousel"
       aria-label="Customer Testimonials"
