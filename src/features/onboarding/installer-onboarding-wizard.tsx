@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -546,6 +547,7 @@ export default function InstallerOnboardingWizard() {
               {watchedStates.length > 0 && (
                 <div className="border-border/60 animate-in slide-in-from-top-2 space-y-2.5 border-t pt-4 duration-100">
                   <Label>Select Covered LGAs</Label>
+                  {/* eslint-disable react-hooks/incompatible-library */}
                   <div className="border-border bg-muted/5 grid max-h-44 grid-cols-2 gap-2 overflow-y-auto rounded-md border p-3 pr-1">
                     {availableLgas.map((lga) => {
                       const watchedLgas = step1Form.watch("operatingLgas") || [];

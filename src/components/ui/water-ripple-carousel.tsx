@@ -413,7 +413,9 @@ function Layer({ from, to, x, y, w, h, duration, opts, onDone }: LayerProps) {
 
   if (reduce)
     return (
-      <img className="wr-in wr-fade" src={to} alt="" aria-hidden="true" onAnimationEnd={onDone} />
+
+/* eslint-disable @next/next/no-img-element */
+<img className="wr-in wr-fade" src={to} alt="" aria-hidden="true" onAnimationEnd={onDone} />
     );
   return <canvas ref={ref} className="wr-in" aria-hidden="true" />;
 }

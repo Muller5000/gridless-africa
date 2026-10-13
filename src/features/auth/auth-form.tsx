@@ -10,6 +10,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { useUserStore } from "@/stores/user-store";
 
 // Schemas for forms
 const signInSchema = zod.object({
@@ -40,6 +41,7 @@ export default function AuthForm() {
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   const supabase = createClient();
+  const setUser = useUserStore((state) => state.setUser);
 
   // Sign In Form
   const signInForm = useForm<SignInValues>({
@@ -64,11 +66,14 @@ export default function AuthForm() {
     setErrorMsg(null);
     setSuccessMsg(null);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: values.email,
         password: values.password,
       });
       if (error) throw error;
+      if (data.user) {
+        setUser(data.user);
+      }
       window.location.assign("/dashboard"); // Use assign() to conform to immutability rules
     } catch (err: unknown) {
       const error = err as Error;
@@ -83,7 +88,7 @@ export default function AuthForm() {
     setErrorMsg(null);
     setSuccessMsg(null);
     try {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email: values.email,
         password: values.password,
         options: {
@@ -95,6 +100,13 @@ export default function AuthForm() {
         },
       });
       if (error) throw error;
+      if (data.user && data.session) {
+          setUser(data.user);
+          // Assuming auto-sign in is enabled, redirect based on role
+          const role = values.role || "customer";
+          window.location.assign(role === "installer" ? "/installer-dashboard" : "/dashboard");
+          return;
+      }
       setSuccessMsg("Registration successful! Please check your email for a verification link.");
       signUpForm.reset();
     } catch (err: unknown) {
